@@ -1,14 +1,21 @@
 {
   "name": "test-docker",
   "version": "1.0.0",
-  "description": "my test docer and node server",
+  "description": "my test docker and node server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -L index.js",
+    "build": "docker build -t test .",
+    "dev": "docker run -d -p 3000:3000 -v $(PWD):/src --name test-docker-node-volume test",
+    "compose": "docker compose up --abort-on-container-exit"
   },
   "author": "sv.lipatnikov",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

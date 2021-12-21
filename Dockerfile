@@ -1,13 +1,13 @@
-FROM node:12.18.1
+FROM node:alpine
 
-ENV MY_KEY=secret_code
+WORKDIR /src
 
-WORKDIR /app
+COPY package*.json ./
 
-COPY ["package.json", "package-lock.json", "./"]
-
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
-CMD ["node", "index.js"]
+EXPOSE 3000
+
+CMD ["npm", "start"]
